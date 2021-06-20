@@ -56,9 +56,10 @@ function changeCheck(itemToChange)
 }
 
 function filterTask()
-{
-    let filteredList=list.filter(item=>item.checked=false);
-    displayList(filteredList)
+{   
+    let filteredList=list.filter(item=>item.checked===true);
+    console.log(filteredList)
+    displayList(filteredList);
 }
 
 function renderListItem(itemToRender)
