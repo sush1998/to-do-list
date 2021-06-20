@@ -43,11 +43,19 @@ function deleteItem(itemToDelete)
 
 }
 
+function changeCheck(itemToChange)
+{
+    console.log("Checked clicked");
+    let updated=list.map(item=>item.id==itemToChange?item.checked=true:item.checked=false)  
+    console.log(updated) 
+}
+
 
 function renderListItem(itemToRender)
 {
     return `<li>${itemToRender.title}</li>
-    <button class="delete-btn" id=${itemToRender.id} onclick=deleteItem(${itemToRender.id})>X</button>`;
+    <button class="delete-btn" id=${itemToRender.id} onclick=deleteItem(${itemToRender.id})>X</button>
+    <button class="checked-btn" id=${itemToRender.id} onclick=changeCheck(${itemToRender.id})>Check</button>`
 }
 
 
