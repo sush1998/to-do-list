@@ -2,6 +2,7 @@ const addBtn=document.querySelector("#add");
 const input=document.querySelector("#list-input")
 const displayTable=document.querySelector("#list-table")
 const deleteBtn=document.querySelector(".delete-btn")
+const filterBtn=document.querySelector("#filter-btn");
 
 const list=[];
 
@@ -14,19 +15,19 @@ function addToList()
         checked:false,
         id:Date.now()
     }
-    list.push(newtask)
+    list.unshift(newtask)
     input.value="";
     input.focus()
     displayList(list);
 }
 
 
-function displayList()
+function displayList(listToDisplay)
 {
     
-    let tableList=list.map(task=>renderListItem(task))
+    let tableList=listToDisplay.map(task=>renderListItem(task))
 
-    console.table   (tableList)
+    console.table(tableList)
     displayTable.innerHTML=tableList.join("")
 }
 
@@ -39,17 +40,26 @@ function deleteItem(itemToDelete)
     console.log(i);
     list.length=0;
     list.push(...i)
-    displayList()
+    displayList(list)
 
 }
 
 function changeCheck(itemToChange)
 {
     console.log("Checked clicked");
-    let updated=list.map(item=>item.id==itemToChange?item.checked=true:item.checked=false)  
-    console.log(updated) 
+    //console.log(itemToChange)
+    //let updated=list.map(item=>item.id==itemToChange?item.checked=true:item.checked=false) 
+    let indexInList=list.findIndex(item=>item.id==itemToChange);
+    list[indexInList].checked=true;
+    //console.log(list)
+ 
 }
 
+function filterTask()
+{
+    let filteredList=list.filter(item=>item.checked=false);
+    displayList(filteredList)
+}
 
 function renderListItem(itemToRender)
 {
@@ -62,3 +72,4 @@ function renderListItem(itemToRender)
 
 addBtn.addEventListener("click",addToList)
 //deleteBtn.addEventListener("click",deleteItem(deleteBtn.id));
+filterBtn.addEventListener("click",filterTask)
