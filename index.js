@@ -2,7 +2,7 @@ const addBtn=document.querySelector("#add");
 const input=document.querySelector("#list-input")
 const displayTable=document.querySelector("#list-table")
 const deleteBtn=document.querySelector(".delete-btn")
-const filterBtn=document.querySelector("#filter-btn");
+const filterBtn=document.querySelector("#filter");
 
 const list=[];
 
@@ -55,11 +55,30 @@ function changeCheck(itemToChange)
  
 }
 
-function filterTask()
+function filterTask(filterType)
 {   
-    let filteredList=list.filter(item=>item.checked===true);
-    console.log(filteredList)
-    displayList(filteredList);
+    // let filteredList=list.filter(item=>item.checked===true);
+    // console.log(filteredList)
+    // displayList(filteredList);
+    console.log(filterType);
+    switch(filterType)
+    {
+        case "completed":
+            let completedTask=list.filter(item=>item.checked===true);
+            displayList(completedTask)
+            break;
+        case "in-progress":
+            let inProgressTask=list.filter(item=>item.checked===false);
+            displayList(inProgressTask)
+            break;
+        case "all":
+            //let allTask=list.filter(item=>item.checked===false);
+            displayList(list)
+            break;
+        default:
+            displayList(list)
+    }
+
 }
 
 function renderListItem(itemToRender)
@@ -73,4 +92,5 @@ function renderListItem(itemToRender)
 
 addBtn.addEventListener("click",addToList)
 //deleteBtn.addEventListener("click",deleteItem(deleteBtn.id));
-filterBtn.addEventListener("click",filterTask)
+//filterBtn.addEventListener("click",filterTask)
+filterBtn.addEventListener("change",function(){filterTask(this.value)})
