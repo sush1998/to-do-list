@@ -3,16 +3,18 @@ const input=document.querySelector("#list-input")
 const displayTable=document.querySelector("#list-table")
 const deleteBtn=document.querySelector(".delete-btn")
 const filterBtn=document.querySelector("#filter");
+const priority=document.querySelector("#priority");
 
 const list=[];
 
 
-function addToList()
+function addToList(taskName,prio)
 {
     //console.log("clicked");
     let newtask={
-        title:input.value,
+        title:taskName,
         checked:false,
+        priority:prio,
         id:Date.now()
     }
     list.unshift(newtask)
@@ -88,9 +90,13 @@ function renderListItem(itemToRender)
     <button class="checked-btn" id=${itemToRender.id} onclick=changeCheck(${itemToRender.id})>Check</button>`
 }
 
+// function getPriority(priority)
+// {
+//     priority.addEventListener("change",()=>console.log(this.priority))
+// }
 
-
-addBtn.addEventListener("click",addToList)
+//addBtn.addEventListener("click",addToList)
+addBtn.addEventListener("click",()=>{addToList(input.value,priority.value)})
 //deleteBtn.addEventListener("click",deleteItem(deleteBtn.id));
 //filterBtn.addEventListener("click",filterTask)
 filterBtn.addEventListener("change",function(){filterTask(this.value)})
