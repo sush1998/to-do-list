@@ -29,6 +29,14 @@ function getCountofTask_Yet_toComplete(list)
     let number= list.reduce((acc,item)=>item.completed==false?acc+1:acc,0)
     count.innerHTML=number
     
+    
+    if(list.every(task=>task.completed==true))
+    {
+        alert("Congratulation ")
+        //ASK if want to clear list
+    }
+
+
 }
 
 function displayList(listToDisplay)
@@ -42,6 +50,7 @@ function displayList(listToDisplay)
 
 function deleteItem(itemToDelete)
 {
+    //ASK SURE QUESTION 
     console.log("delete clicked")
     console.log(itemToDelete);
     let i=list.filter(item=>item.id!=itemToDelete)
@@ -64,17 +73,11 @@ function changeCheck(itemToChange)
     {
         list[indexInList].completed=false;
     }
-    
-    getCountofTask_Yet_toComplete(list);
-    //console.log(list)
- 
+    getCountofTask_Yet_toComplete(list)
 }
 
 function filterTask(filterType)
 {   
-    // let filteredList=list.filter(item=>item.completed===true);
-    // console.log(filteredList)
-    // displayList(filteredList);
     console.log(filterType);
     switch(filterType)
     {
@@ -108,16 +111,9 @@ function renderListItem(itemToRender)
     ${checkbox}`
 }
 
-// function getPriority(priority)
-// {
-//     priority.addEventListener("change",()=>console.log(this.priority))
-// }
 
 //addBtn.addEventListener("click",addToList)
 addBtn.addEventListener("click",()=>{addToList(input.value,priority.value)})
-//deleteBtn.addEventListener("click",deleteItem(deleteBtn.id));
-//filterBtn.addEventListener("click",filterTask)
 filterBtn.addEventListener("change",function(){
     filterTask(this.value)
-   // getCountofTask_Yet_toComplete(list)
 })
