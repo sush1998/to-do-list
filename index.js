@@ -98,9 +98,14 @@ function filterTask(filterType)
 
 function renderListItem(itemToRender)
 {
+    let checkbox=`<input type="checkbox" id="${itemToRender.id}" onclick=changeCheck(${itemToRender.id})>`
+    if(itemToRender.completed==true)
+    {
+        checkbox=`<input type="checkbox" id="${itemToRender.id}" onclick=changeCheck(${itemToRender.id}) checked>`
+    }
     return `<li>${itemToRender.title}</li>
     <button class="delete-btn" id=${itemToRender.id} onclick=deleteItem(${itemToRender.id})>X</button>
-    <input type="checkbox" id="${itemToRender.id}" onclick=changeCheck(${itemToRender.id})>`
+    ${checkbox}`
 }
 
 // function getPriority(priority)
