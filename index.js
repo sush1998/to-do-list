@@ -1,5 +1,5 @@
 const addBtn=document.querySelector("#add");
-const input=document.querySelector("#list-input")
+const input=document.querySelector("#task-input")
 const displayTable=document.querySelector("#list-table")
 const deleteBtn=document.querySelector(".delete-btn")
 const filterBtn=document.querySelector("#filter");
